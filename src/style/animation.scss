@@ -1,0 +1,16 @@
+.box-fade-enter-from,
+.box-fade-leave-to {
+  opacity: 0;
+  background-color: rgba(#000, 0);
+}
+
+.box-fade-enter-active,
+.box-fade-leave-active {
+  transition: all 0.3s linear;
+}
+
+.box-fade-enter-to,
+.box-fade-leave-from {
+  opacity: 1;
+  background-color: rgba(#000, 0.9);
+}
