@@ -45,7 +45,7 @@ export const films: Film[] = [
   {
     name: "Cars",
     year: 2006,
-    poster: "https://m.media-amazon.com/images/M/MV5BMTg5NzY0MzA2MV5BMl5BanBnXkFtZTYwNDc3NTc2._V1_UX182_CR0,0,182,268_AL_.jpg",
+    poster: "https://m.media-amazon.com/images/M/MV5BMTg5NzY0MzA2MV5BMl5BanBnXkFtZTYwNDc3NTc2._V1_SX300.jpg",
     imdbId: "tt0317219"
   },
   {
@@ -123,7 +123,7 @@ export const films: Film[] = [
   {
     name: "Incredibles 2",
     year: 2018,
-    poster: "https://m.media-amazon.com/images/M/MV5BMTEzNzY0OTg0NTdeQTJeQWpwZ15BbWU4MDU3OTg3MjUz._V1_UX182_CR0,0,182,268_AL_.jpg",
+    poster: "https://m.media-amazon.com/images/M/MV5BMTEzNzY0OTg0NTdeQTJeQWpwZ15BbWU4MDU3OTg3MjUz._V1_SX300.jpg",
     imdbId: "tt3606756"
   },
   {
