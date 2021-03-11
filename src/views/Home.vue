@@ -13,16 +13,16 @@
         </template>
       </div>
     </div>
-    <transition name="box-fade">
-      <template v-if="showCarouselPage">
-        <CarouselPage
-          :randomFilms="randomFilms"
-          :selectedItem="selectedItem"
-          @closeCarousel="closeCarousel"
-        />
-      </template>
-    </transition>
   </div>
+  <transition name="box-fade">
+    <template v-if="showCarouselPage">
+      <CarouselPage
+        :randomFilms="randomFilms"
+        :selectedItem="selectedItem"
+        @closeCarousel="closeCarousel"
+      />
+    </template>
+  </transition>
 </template>
 
 <script lang="ts">
@@ -42,7 +42,9 @@ export default defineComponent({
   },
   computed: {
     randomFilms(): Film[] {
-      const result = films.sort(() => Math.random() - 0.5).slice(films.length - 6)
+      let numOfFilm = 6;
+      if (window.innerWidth >= 1350) numOfFilm = 8;
+      const result = films.sort(() => Math.random() - 0.5).slice(films.length - numOfFilm)
       return result;
     }
   },
@@ -61,9 +63,9 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import '@/style/animation.scss';
+@import '@/style/mixins.scss';
 
 .page-home {
-  position: relative;
   display: flex;
   width: 100vw;
   max-width: 1400px;
@@ -71,9 +73,8 @@ export default defineComponent({
   margin: auto;
 
   .title {
-    width: 160px;
     border-top: 16px solid #000;
-    padding-top: 10vh;
+    padding: 10vh 0 0 12px;
     margin-left: 7vw;
     font-size: 56px;
     font-weight: 800;
@@ -82,6 +83,12 @@ export default defineComponent({
     writing-mode: vertical-rl;
     color: #000;
     text-decoration: underline;
+
+    @include respond(tab-mid) {
+      font-size: 50px;
+      line-height: 70px;
+      margin-left: 0;
+    }
   }
 
   .content {
@@ -89,22 +96,33 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 30px;
 
     .items {
       display: grid;
       grid-template-columns: auto auto auto;
-      grid-gap: 35px;
+      grid-gap: 30px;
+
+      @include respond(big-desktop) {
+        grid-template-columns: auto auto auto auto;
+        grid-gap: 35px;
+      }
       
 
       .item {
-        width: 27vh;
+        width: 25.65vh;
         max-width: 250px;
-        height: 40vh;
+        height: 38vh;
         max-height: 370px;
         background-color: grey;
         cursor: pointer;
         overflow: hidden;
         transition: box-shadow 1s ease;
+
+        @include respond(tab-mid) {
+          width: 23.63vh;
+          height: 35vh;
+        }
 
         .item-poster {
           width: 100%;
@@ -116,7 +134,15 @@ export default defineComponent({
       }
 
       .item:hover {
-        box-shadow: 16px 16px 0px rgba(#000, .8);
+        box-shadow: 13px 13px 0px rgba(#000, .6);
+
+        @include respond(big-desktop) {
+          box-shadow: 16px 16px 0px rgba(#000, .8);
+        }
+
+        @include respond(tab-mid) {
+          box-shadow: 13px 13px 0px rgba(#000, .5);
+        }
 
         .item-poster {
           transform: scale(1.02);

@@ -3,7 +3,7 @@
     <div class="info">
       <div class="index">
         <span class="current-index">{{ index + 1 }}</span>
-        /6
+        / {{ randomFilms.length }}
       </div>
       <div class="movie">
         <div class="name">{{ randomFilms[index].name }}</div>
@@ -17,7 +17,7 @@
         @click="showPrev"
       />
       <i
-        v-if="index !== 5"
+        v-if="index < randomFilms.length - 1"
         class="btn-next fas fa-chevron-right"
         @click="showNext"
       />
@@ -58,7 +58,7 @@ export default defineComponent({
       if (this.index > 0) this.index--;
     },
     showNext() {
-      if (this.index < 5) this.index++;
+      if (this.index < (this.randomFilms.length - 1)) this.index++;
     },
     close() {
       this.$emit("closeCarousel");
@@ -68,6 +68,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@import '@/style/mixins.scss';
+
 .page-carousel {
   position: absolute;
   top: 0;
@@ -85,16 +87,28 @@ export default defineComponent({
     justify-content: space-between;
     width: 240px;
     height: 80vh;
-    padding-right: 40px;
+    padding-right: 80px;
     color: #fff;
+
+    @include respond(tab-mid) {
+      width: 200px;
+    }
 
     .index {
       font-size: 24px;
+
+      @include respond(tab-mid) {
+        font-size: 20px;
+      }
 
       .current-index {
         font-size: 50px;
         font-weight: bold;
         vertical-align: bottom;
+
+        @include respond(tab-mid) {
+          font-size: 46px;
+        }
       }
     }
 
@@ -105,10 +119,18 @@ export default defineComponent({
       .name {
         font-size: 24px;
         margin-bottom: 8px;
+
+        @include respond(tab-mid) {
+          font-size: 20px;
+        }
       }
 
       .year {
         font-size: 16px;
+
+        @include respond(tab-mid) {
+          font-size: 14px;
+        }
       }
     }
   }
@@ -126,14 +148,26 @@ export default defineComponent({
       font-size: 40px;
       cursor: pointer;
       z-index: 100;
+
+      @include respond(tab-mid) {
+        font-size: 36px;
+      }
     }
 
     .btn-prev {
       left: -80px;
+
+      @include respond(tab-mid) {
+        left: -62px;
+      }
     }
 
     .btn-next {
       right: -80px;
+
+      @include respond(tab-mid) {
+        right: -62px;
+      }
     }
 
     .btn-close {
