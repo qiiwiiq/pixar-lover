@@ -5,12 +5,30 @@
       ANIMATION
     </div>
     <div class="content">
-      <div class="items">
-        <template v-for="(item, index) in randomFilms" :key="item.imdbId">
-          <div class="item" @click="openCarousel(item, index)">
-            <img :src="item.poster" class="item-poster" />
-          </div>
-        </template>
+      <div class="nav">
+        <router-link :to="{ name: 'Vote' }" class="btn-vote">
+          <span class="vote">VOTE</span>
+          <span>
+            <div>for your favorite</div>
+            <div class="pixar">PIXAR film</div>
+          </span>
+        </router-link>
+        <button class="btn-nav">
+          <i class="fas fa-stream"></i>
+        </button>
+      </div>
+      <div class="film-container">
+        <div class="items">
+          <template v-for="(item, index) in randomFilms" :key="item.imdbId">
+            <div class="item" @click="openCarousel(item, index)">
+              <img
+                :src="item.poster"
+                :alt="item.name"
+                class="item-poster"
+              />
+            </div>
+          </template>
+        </div>
       </div>
     </div>
   </div>
@@ -94,58 +112,117 @@ export default defineComponent({
   .content {
     flex: 1;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
+    flex-direction: column;
 
-    .items {
-      display: grid;
-      grid-template-columns: auto auto auto;
-      grid-gap: 30px;
+    .nav {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 20px;
 
-      @include respond(big-desktop) {
-        grid-template-columns: auto auto auto auto;
-        grid-gap: 35px;
+      .btn-vote {
+        display: flex;
+        outline: none;
+        border: none;
+        background-color: #000;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 12px;
+        line-height: 16px;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-radius: 45% 40% 55% 40%;
+        transition: all .2s ease;
+
+        &:hover {
+          transform: rotate(-3deg);
+          box-shadow: 2px 2px 5px 1px rgba(#000, .3);
+        }
+
+        &:active {
+          transform: scale(.98);
+        }
+
+        .vote {
+          font-size: 26px;
+          font-family: 'Boogaloo', cursive;
+          line-height: 30px;
+          margin-right: 8px;
+          color: #ffdd00;
+        }
+
+        .pixar {
+          font-size: 14px;
+          font-weight: 700;
+        }
       }
-      
 
-      .item {
-        width: 25.65vh;
-        max-width: 250px;
-        height: 38vh;
-        max-height: 370px;
-        background-color: grey;
+      .btn-nav {
+        margin-left: 16px;
+        background-color: transparent;
+        border: 0;
+        outline: 0;
+        color: #000;
+        font-size: 20px;
         cursor: pointer;
-        overflow: hidden;
-        transition: box-shadow 1s ease;
-
-        @include respond(tab-mid) {
-          width: 23.63vh;
-          height: 35vh;
-        }
-
-        .item-poster {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: 50% 50%;
-          transition: transform 1s ease;
-        }
       }
+    }
 
-      .item:hover {
-        box-shadow: 13px 13px 0px rgba(#000, .6);
+    .film-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 30px 20px 30px;
+
+      .items {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 30px;
 
         @include respond(big-desktop) {
-          box-shadow: 16px 16px 0px rgba(#000, .8);
+          grid-template-columns: auto auto auto auto;
+          grid-gap: 35px;
+        }
+        
+
+        .item {
+          width: 25.65vh;
+          max-width: 250px;
+          height: 38vh;
+          max-height: 370px;
+          background-color: grey;
+          cursor: pointer;
+          overflow: hidden;
+          transition: box-shadow 1s ease;
+
+          @include respond(tab-mid) {
+            width: 23.63vh;
+            height: 35vh;
+          }
+
+          .item-poster {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 50%;
+            transition: transform 1s ease;
+          }
         }
 
-        @include respond(tab-mid) {
-          box-shadow: 13px 13px 0px rgba(#000, .5);
-        }
+        .item:hover {
+          box-shadow: 13px 13px 0px rgba(#000, .6);
 
-        .item-poster {
-          transform: scale(1.02);
+          @include respond(big-desktop) {
+            box-shadow: 16px 16px 0px rgba(#000, .8);
+          }
+
+          @include respond(tab-mid) {
+            box-shadow: 13px 13px 0px rgba(#000, .5);
+          }
+
+          .item-poster {
+            transform: scale(1.02);
+          }
         }
       }
     }

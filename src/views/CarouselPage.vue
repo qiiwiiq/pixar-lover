@@ -28,7 +28,11 @@
           :style="{ transform: 'translateX('+ (- index * 54) + 'vh)' }"
         >
           <template v-for="item in randomFilms" :key="item.imdbId">
-            <img :src="item.poster" class="poster" />
+            <img
+              :src="item.poster"
+              :alt="item.name"
+              class="poster"
+            />
           </template>
         </div>
       </div>
