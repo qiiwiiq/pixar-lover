@@ -19,5 +19,6 @@ html, body {
 :root {
   --page-vote-primary: #22254b;
   --page-vote-secondary: #373b69;
+  --page-vote-tertiary: #fbb034;
 }
 </style>

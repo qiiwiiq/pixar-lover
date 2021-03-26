@@ -36,6 +36,9 @@ export default defineComponent({
   computed: {
     ...mapState(["selectedFilms"])
   },
+  mounted() {
+    this.selected = this.selectedFilms.includes(this.item);
+  },
   methods: {
     select(item: Film) {
       if (this.selectedFilms.length < 6) {

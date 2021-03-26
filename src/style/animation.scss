@@ -14,3 +14,18 @@
   opacity: 1;
   background-color: rgba(#000, 0.9);
 }
+
+.slide-enter-from,
+.slide-leave-to {
+  width: 0;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 1s linear;
+}
+
+.slide-enter-to,
+.slide-leave-from {
+  width: 120px;
+}

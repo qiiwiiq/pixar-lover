@@ -6,6 +6,13 @@ export interface Film {
   imdbId: string;
 }
 
+export interface RankFilm extends Film {
+  rank: number;
+  shiftLeft: boolean;
+  shiftRight: boolean;
+  dragged: boolean;
+}
+
 export const films: Film[] = [
   {
     index: 0,
